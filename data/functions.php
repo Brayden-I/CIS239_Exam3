@@ -140,7 +140,18 @@ function purchase_create(int $user_id, int $record_id): void
 // the function receives the ID of the user that is logged in
 // Using prepared statement returns an array of records purchased by the logged in user
 
-function ordered(int $user_id){
+function ordered(int $user_id) : array
+{ 
+    $pdo = get_pdo();
+    $sql = "SELECT r.title, r.artist, f.name AS 'format', r.price, p.purchase_date FROM purchases p 
+                JOIN users u ON p.user_id = u.id
+                JOIN records r ON p.record_id = r.id
+                JOIN formats f ON r.format_id = r.format_id
+                WHERE u.id = :user_id
+                ORDER BY p.purchase_date DESC";
     
-    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':user_id' => $user_id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row ?: null;
 }
