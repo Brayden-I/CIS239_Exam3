@@ -152,6 +152,6 @@ function ordered(int $user_id) : array
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([':user_id' => $user_id]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row ?: null;
+    $rows = $stmt->fetchall(PDO::FETCH_ASSOC);
+    return $rows ?: null;
 }
