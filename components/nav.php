@@ -1,17 +1,18 @@
 <nav class="navbar navbar-expand-sm" style=" background-color: #e3f2fd;" data-bs-theme="light">
     <div class="container-fluid">
 
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item"><a class="nav-link" href="?view=list">List Records</a></li>
-            <li class="nav-item"><a class="nav-link" href="?view=create">Add Record</a></li>
-        </ul>
         <?php if (!empty($_SESSION['user_id'])): ?>
-            <span class="navbar-text ">Welcome, <?= htmlspecialchars($_SESSION['full_name']) ?></span>
-        <?php endif; ?>
-
-        <ul class="navbar-nav ms-auto">
-
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="?view=list">List Records</a></li>
+                <li class="nav-item"><a class="nav-link" href="?view=create">Add Record</a></li>
+            </ul>
             <?php if (!empty($_SESSION['user_id'])): ?>
+                <span class="navbar-text ">Welcome, <?= htmlspecialchars($_SESSION['full_name']) ?></span>
+            <?php endif; ?>
+
+            <ul class="navbar-nav ms-auto">
+
+
                 <li class="nav-item"><a class="nav-link" href="?view=orders">Orders</a></li>
                 <li class="nav-item"><a class="nav-link" href="?view=cart">Cart</a></li>
                 <li class="nav-item">
@@ -27,7 +28,7 @@
 
 
             <?php endif; ?>
-        </ul>
+            </ul>
 
     </div>
 </nav>
